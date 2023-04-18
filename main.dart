@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget { //MyApp: classe, com mtodos e atributos; e
               ),
               SizedBox(height: 30), //ou poderia ser Divider
               DecoratedBox(
-                decoration: BoxDecoration (color: Colors.redAccent),
+                decoration: BoxDecoration (color: Color.fromARGB(255, 223, 35, 35)),
                 child: Padding (
                   padding: EdgeInsets.all(20),
                   child: Text("amo", style: TextStyle(fontSize: 30),),
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget { //MyApp: classe, com mtodos e atributos; e
               ),
 
                   DecoratedBox(
-                  decoration: BoxDecoration (color: Colors.deepPurple),
+                  decoration: BoxDecoration (color: Color.fromARGB(255, 91, 211, 141)),
                   child: Padding (
                   padding: EdgeInsets.all(10),
                   child: Text("aula", style: TextStyle(fontSize: 60),),
@@ -66,13 +66,21 @@ class MyApp extends StatelessWidget { //MyApp: classe, com mtodos e atributos; e
               ),
 
                   DecoratedBox(
-                  decoration: BoxDecoration (color: Colors.black),
+                  decoration: BoxDecoration (color: Color.fromARGB(255, 22, 151, 29)),
                   child: Padding (
                   padding: EdgeInsets.all(10),
                   child: Text("da", style: TextStyle(fontSize: 60),),
                 )
               ),
                 ],
+              ),
+              SizedBox(height: 30), //ou poderia ser Divider
+              DecoratedBox(
+                decoration: BoxDecoration (color: Color.fromARGB(255, 158, 30, 141)),
+                child: Padding (
+                  padding: EdgeInsets.all(20),
+                  child: Text("Tânia", style: TextStyle(fontSize: 30),),
+                ) 
               ),
               
               SizedBox(
@@ -88,4 +96,3 @@ class MyApp extends StatelessWidget { //MyApp: classe, com mtodos e atributos; e
     );
   }
 }
-
