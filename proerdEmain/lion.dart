@@ -6,9 +6,10 @@
 import 'package:flutter/material.dart';
 
 class lion extends StatelessWidget {
-  const lion(this.nome, this.tamanhoTexto, {super.key}); //construtor; passa os atributos aqui (parametros)
+  const lion(this.link,this.nome, this.tamanhoTexto, {super.key}); //construtor; passa os atributos aqui (parametros)
 
   //atributos
+  final String link;
   final String nome; 
   final double tamanhoTexto;
 
@@ -18,8 +19,16 @@ class lion extends StatelessWidget {
       decoration: BoxDecoration (),
       child: Padding (
         padding: EdgeInsets.all(5),
-        child: Text(nome, style: TextStyle(fontSize: tamanhoTexto),),
-      )
+        child: Row(
+          children: [
+            SizedBox(
+              width: 50,
+              child: Image.network(link),
+            ),
+            Text(nome, style: TextStyle(fontSize: tamanhoTexto),)
+          ],
+        ),
+      ),
     );
   }
 }
