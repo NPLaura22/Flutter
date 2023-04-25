@@ -25,11 +25,12 @@ class MyApp extends StatelessWidget { //MyApp: classe, com mtodos e atributos; e
           backgroundColor: Color.fromARGB(255, 1, 124, 161),
           centerTitle: true,
         ),  //AppBar é um widget
-        body: Center(
+        body: Center(          
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             // ignore: prefer_const_literals_to_create_immutables
             children: [ 
+              SizedBox(height: 10,),
               DecoratedBox(
                 decoration: BoxDecoration (color: Colors.blueAccent),
                 child: Padding (
@@ -47,24 +48,26 @@ class MyApp extends StatelessWidget { //MyApp: classe, com mtodos e atributos; e
               ),
               SizedBox(height: 30),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   DecoratedBox(
                   decoration: BoxDecoration (color: Colors.deepPurple),
                   child: Padding (
                   padding: EdgeInsets.all(10),
+                  
                   child: Text("a", style: TextStyle(fontSize: 60),),
                 )
               ),
-
+                  SizedBox(width: 10,),
                   DecoratedBox(
                   decoration: BoxDecoration (color: Color.fromARGB(255, 91, 211, 141)),
                   child: Padding (
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),                 
                   child: Text("aula", style: TextStyle(fontSize: 60),),
                 )
               ),
-
+                  SizedBox(width: 10,),
                   DecoratedBox(
                   decoration: BoxDecoration (color: Color.fromARGB(255, 22, 151, 29)),
                   child: Padding (
@@ -82,7 +85,7 @@ class MyApp extends StatelessWidget { //MyApp: classe, com mtodos e atributos; e
                   child: Text("Tânia", style: TextStyle(fontSize: 30),),
                 ) 
               ),
-              
+             SizedBox(height: 20,),
               SizedBox(
                 height: 150,
                 width: 200,
