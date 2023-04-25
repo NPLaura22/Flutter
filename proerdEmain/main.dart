@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.black,
           centerTitle: true,
         ),
-        body: Center (
+        body: SingleChildScrollView(
+          child: Center (
           child: Column (
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
                ),
                SizedBox(height: 15,),
 
-               DecoratedBox( 
+               /*DecoratedBox( 
                   decoration: BoxDecoration(),
                   child: Padding (
                     padding: EdgeInsets.only(left: 0, right: 350),
@@ -66,10 +67,10 @@ class MyApp extends StatelessWidget {
                   ),
                   ),
                   
-               ),
-               lion("tetttste",20), 
-               lion("testgte",40),
-               lion("tesdfte",10),
+               ),*/
+               lion('https://media.istockphoto.com/id/456097309/pt/foto/close-up-de-um-le%C3%A3o-rugir-isolado-a-branco.jpg?s=1024x1024&w=is&k=20&c=Il1vU1RN0I2SOfht-UU330c8UaxmGKlwT0_IihdLQKY=',"tetttste",20), 
+               lion('https://media.istockphoto.com/id/456097309/pt/foto/close-up-de-um-le%C3%A3o-rugir-isolado-a-branco.jpg?s=1024x1024&w=is&k=20&c=Il1vU1RN0I2SOfht-UU330c8UaxmGKlwT0_IihdLQKY=',"testgte",40),
+               lion('https://media.istockphoto.com/id/456097309/pt/foto/close-up-de-um-le%C3%A3o-rugir-isolado-a-branco.jpg?s=1024x1024&w=is&k=20&c=Il1vU1RN0I2SOfht-UU330c8UaxmGKlwT0_IihdLQKY=',"tesdfte",10),
                
                
             ],
@@ -77,6 +78,7 @@ class MyApp extends StatelessWidget {
             
           )
           
+        ),
         ),
         
         bottomNavigationBar: BottomAppBar (
