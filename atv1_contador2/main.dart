@@ -1,4 +1,4 @@
-import 'package:atv1_contador/my_contador.dart';
+import 'package:atv1_vinho/my_contador.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,4 +20,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
