@@ -10,6 +10,25 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
+
+  //ATRIBUTOS
+  int _indice = 0;
+
+  //MÉTODO
+  void _itemClicado(int index) { //index é a var que vai vir do bottomnavigation (0,1...)
+    setState(() {
+      _indice = index; //indice recebe index q vem do bottomnav, vai jogar no atributo indice e mudar a pagina 
+    });
+    switch (index) {
+      case 0: Navigator.pushNamed(context, '/person'); //definimos as rotas na main
+      break;
+      case 1: Navigator.pushNamed(context, '/bag');
+      break;
+      case 2: Navigator.pushNamed(context, '/favorite');
+      break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +51,27 @@ class _MyHomeState extends State<MyHome> {
           icon: Icon(Icons.favorite)),
         ],      
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        // ignore: prefer_const_literals_to_create_immutables
+        currentIndex: _indice,
+        onTap: _itemClicado, //nao precisa passar os parametros
+        // ignore: prefer_const_literals_to_create_immutables
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Person",
+            ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag),
+            label: "Bag",
+            ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: "Favorite",
+            ),
+              //pega o indice correspondnte ao indice (0,1,2,3...)
+            
+        ]),
       );
   }
 }
