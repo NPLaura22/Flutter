@@ -1,9 +1,9 @@
+import 'package:atv2_portifolio/home.dart';
+import 'package:atv2_portifolio/welcome.dart';
 import 'package:flutter/material.dart';
-import 'package:atv2_portifoliovinho/welcome.dart';
-import 'package:atv2_portifoliovinho/us.dart';
+import 'package:atv2_portifolio/counter.dart';
+import 'package:atv2_portifolio/us.dart';
 
-import 'counter.dart';
-import 'home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,16 +19,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false, //para nao aparecer o ngc
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blue,
       ),
       //home: const MyHome(),
       routes: {
         '/' : (context) => MyHome(), 
         '/welcome' : (context) => Welcome(), //nome da classe
         '/counter' : (context) => Counter(),
-        '/us' :(context) => Us()   
+        '/us' :(context) => Us(),   
+        //'/new' :(context) => New()
       },
     );
   }
 }
-
