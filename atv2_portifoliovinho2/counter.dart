@@ -1,11 +1,12 @@
+import 'package:atv2_portifolio/clas_counter.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Counter());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Counter extends StatelessWidget {
+  const Counter({super.key});
 
   // This widget is the root of your application.
   @override
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const My_Counter(),
+      home: const clas_counter(),
     );
   }
 }
