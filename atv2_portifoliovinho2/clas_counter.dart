@@ -2,17 +2,15 @@
 
 import 'package:flutter/material.dart';
 
-class My_Counter extends StatefulWidget {
-  const My_Counter({super.key});
+class clas_counter extends StatefulWidget {
+  const clas_counter({super.key});
 
   @override
-  State<My_Counter> createState() => _My_CounterState();
+  _clas_counterState createState() => _clas_counterState();
 }
 
 
-class _My_CounterState extends State<My_Counter> {
-  @override
-
+class _clas_counterState extends State<clas_counter> {
   void _increment(){
     setState(() {
       count++;
@@ -24,7 +22,7 @@ class _My_CounterState extends State<My_Counter> {
       count--;
     });
   }
-  //https://cdn-icons-png.flaticon.com/512/68/68964.png
+
   void mudarEstado () {
     if (count < -2){
       linkImagem = 'https://cdn-icons-png.flaticon.com/512/24/24915.png';
@@ -69,7 +67,7 @@ class _My_CounterState extends State<My_Counter> {
               child: Image.network(linkImagem)
             ),
             SizedBox(height: 10,),
-            Text("Hoje o dia pede um vinho!!"),
+            Text("Hoje o dia pede um vinho"),
             SizedBox(height: 10,),
 
             
