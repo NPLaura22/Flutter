@@ -4,91 +4,84 @@
 
 import 'package:flutter/material.dart';
 
-import 'welcome_design.dart';
+import 'clas_welcome.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Welcome());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  // This widget is the root of your application.
+class Welcome extends StatelessWidget {
+  const Welcome({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Exercicio1',
+      debugShowCheckedModeBanner: false, 
+      title: 'WelcomePage',
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
       home: Scaffold(
         appBar: AppBar (
-          title: Text("PROERD"),
-          backgroundColor: Colors.black,
+          title: Text("Tipos de Vinho:"),
+          backgroundColor:  Color.fromARGB(255, 37, 4, 2),
+          
           centerTitle: true,
         ),
         body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,          
           child: Center (
           child: Column (
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              SizedBox(height: 30,),
               SizedBox(
                 width: 300,
-                child: Image.network('https://www.pmpr.pr.gov.br/sites/default/arquivos_restritos/files/imagem/2021-10/img_9867.jpg'),
+                child: Image.network('https://www.divvino.com.br/blog/wp-content/uploads/2019/06/vinho-inverno.jpg'),
               ),
               SizedBox(height: 30,),
                DecoratedBox(
                   decoration: BoxDecoration (),
                   child: Padding (
                     padding: EdgeInsets.only(left: 50, right: 50),
-                    child: Text("Bem Vindo ao PROERD - Programa Educacional de Resistência às Drogas e à VIolência", style: TextStyle(fontSize: 20), ),
+                    child: Text("Anos e taças de vinho nunca devem ser contados!!", style: TextStyle(fontSize: 20, foreground: Paint()..color = const Color.fromARGB(255, 102, 53, 49), fontWeight: FontWeight.bold),),
                 )
                ),
                SizedBox(height: 15,),
                DecoratedBox(
-                  decoration: BoxDecoration (),
+                  decoration: BoxDecoration (
+                    borderRadius: BorderRadius.circular(10), 
+                    border: Border.all(
+                      color: Color.fromARGB(255, 97, 21, 21),
+                      width: 10 
+                    ),
+                    
+                    ),
                   child: Padding (
                     padding: EdgeInsets.all(20),
-                    child: Text("Diga não:", style: TextStyle(fontSize: 30),),
+                    child: Text("Aqui você encontrará:", style: TextStyle(fontSize: 15),),
                   ),
                ),
-               SizedBox(height: 5,),
+               SizedBox(height: 10,),
+
+               clas_welcome('https://www.evino.com.br/blog/wp-content/uploads/2021/08/vinho-tinto.jpg'," Vinho Tinto - ",20), //produzido por meio da fermentação do suco extraído de uvas tintas.
+               clas_welcome('https://www.divinho.com.br/blog/wp-content/uploads/2020/11/Vinho_Branco.jpg'," Vinho Branco - ",25), //produzido a partir de uvas brancas e tintas.
+               clas_welcome('https://www.evino.com.br/blog/wp-content/uploads/2021/07/vinho-rose-960x540.jpg'," Vinho Rosé - ",30), //produzido a partir de uvas tintas por diferentes estilos de vinificação.
+               clas_welcome('https://www.latercera.com/resizer/r23fAPx2MDf40EmTC3VSSzbX6Fc=/900x600/smart/cloudfront-us-east-1.images.arcpublishing.com/copesa/Y4CU3BDYUZGGZMRJAVOMZEHBXM.jpg'," Espumante - ",25), //tipo de vinho produzido com gás carbônico dissolvido.
+               clas_welcome('https://www.vemdauva.com.br/wp-content/uploads/2019/06/copos-vinho-carcavelos-1920px.jpg'," Vinho Licoroso - ",20), //tem a fermentação interrompida antes do término pela adição de aguardente vínica.
                
-               welcome_design('https://media.istockphoto.com/id/456097309/pt/foto/close-up-de-um-le%C3%A3o-rugir-isolado-a-branco.jpg?s=1024x1024&w=is&k=20&c=Il1vU1RN0I2SOfht-UU330c8UaxmGKlwT0_IihdLQKY=',"as drogas",30), 
-               welcome_design('https://media.istockphoto.com/id/456097309/pt/foto/close-up-de-um-le%C3%A3o-rugir-isolado-a-branco.jpg?s=1024x1024&w=is&k=20&c=Il1vU1RN0I2SOfht-UU330c8UaxmGKlwT0_IihdLQKY=',"a violência",25),
-               welcome_design('https://media.istockphoto.com/id/456097309/pt/foto/close-up-de-um-le%C3%A3o-rugir-isolado-a-branco.jpg?s=1024x1024&w=is&k=20&c=Il1vU1RN0I2SOfht-UU330c8UaxmGKlwT0_IihdLQKY=',"ao bullying",20),
-               SizedBox(height: 30,),
-               welcome_design('https://ponte.org/wp-content/uploads/2021/12/proerd-852x500.jpeg',"Venha fazer parte!!",20),
+
             ],
+            
+            
           )
+          
         ),
         ),
         
-        bottomNavigationBar: BottomAppBar (
-          color: const Color.fromARGB(255, 240, 21, 6),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                icon: Icon(Icons.menu),
-                onPressed: () { // ação do botão de menu
-                },
-              ),
-              DecoratedBox(
-                decoration: BoxDecoration (),
-                child: Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Text("Venha fazer parte!", style: TextStyle(fontSize: 20, color: Colors.white) ),
-                ),
-                
-              ),
-              IconButton(
-                icon: Icon(Icons.favorite),
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ),
+        
 
       ),
     );
