@@ -5,8 +5,8 @@
 
 import 'package:flutter/material.dart';
 
-class welcome_design extends StatelessWidget {
-  const welcome_design(this.link,this.nome, this.tamanhoTexto, {super.key}); //construtor; passa os atributos aqui (parametros)
+class clas_welcome extends StatelessWidget {
+  const clas_welcome(this.link,this.nome, this.tamanhoTexto, {super.key}); //construtor; passa os atributos aqui (parametros)
 
   //atributos
   final String link;
@@ -18,11 +18,11 @@ class welcome_design extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration (),
       child: Padding (
-        padding: EdgeInsets.all(15),
+        padding: EdgeInsets.all(5),
         child: Row(
           children: [
             SizedBox(
-              width: 60,
+              width: 80,
               child: Image.network(link),
             ),
             Text(nome, style: TextStyle(fontSize: tamanhoTexto),)
