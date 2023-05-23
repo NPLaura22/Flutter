@@ -1,5 +1,8 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_element, unused_field
 
+import 'package:atv2_portifolio/counter.dart';
+import 'package:atv2_portifolio/us.dart';
+import 'package:atv2_portifolio/welcome.dart';
 import 'package:flutter/material.dart';
 
 
@@ -28,60 +31,101 @@ class _MyHomeState extends State<MyHome> {
     setState(() {
       _indice = index; //indice recebe index q vem do bottomnav, vai jogar no atributo indice e mudar a pagina 
     });
-    /*switch (index) {
-      case 0: Navigator.pushNamed(context, '/person'); //definimos as rotas na main
-      break;
-      case 1: Navigator.pushNamed(context, '/bag');
-      break;
-      case 2: Navigator.pushNamed(context, '/favorite');
-      break;
-    }*/
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home"),
-        actions: [ //propriedade da appbar abre um vetor
-          IconButton(onPressed: () {
-            Navigator.pushNamed(context, '/welcome');
-          }, 
-          icon: Icon(Icons.person)),
-
-          IconButton(onPressed: () {
-            Navigator.pushNamed(context, '/counter');     
-          }, 
-          icon: Icon(Icons.shopping_bag)),
-
-          IconButton(onPressed: () {
-            Navigator.pushNamed(context, '/us');
-          }, 
-          icon: Icon(Icons.favorite)),
-        ],      
+      
+      backgroundColor: Color.fromRGBO(0, 0, 0, 1),
+  appBar: AppBar(
+    title: Text("L&L VINÍCOLA"),
+    
+    backgroundColor: Color.fromARGB(255, 37, 4, 2),
+    actions: [
+      IconButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/welcome');
+        },
+        icon: Icon(Icons.wine_bar),
       ),
-      body: _telas[_indice], //pega indice q veio do bottom pelo currenteindex, passa pelo array e pelo array ve oq cjhama, se for 0 chama person etc. propriedade body chama uma das instancias 
-      bottomNavigationBar: BottomNavigationBar(
-        // ignore: prefer_const_literals_to_create_immutables
-        currentIndex: _indice,
-        onTap: _itemClicado, //nao precisa passar os parametros
-        // ignore: prefer_const_literals_to_create_immutables
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Welcome",
+      IconButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/counter');
+        },
+        icon: Icon(Icons.countertops),
+      ),
+      IconButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/us');
+        },
+        icon: Icon(Icons.person_2),
+      ),
+    ],
+  ),
+  body: SingleChildScrollView(
+    scrollDirection: Axis.vertical,    
+    child: Column(    
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("Sejam todos bem-vindos à L&L Vinícola!",
+        style: TextStyle(fontSize: 25, 
+              foreground: Paint()..color = Color.fromARGB(255, 231, 221, 220), 
+              
+)),
+        
+        Image.network(
+          'https://cenciturismo.com.br/wp-content/uploads/2019/09/chianti-toscana-foto-tomas-marek-123rf.jpg',
+          width: 500,
+          height: 500,
+        ),
+        SizedBox(height: 2),
+        Text("wwwwwwwww",style: TextStyle(fontSize: 18, foreground: Paint()..color = Color.fromARGB(255, 231, 221, 220),), 
+        ),
+      ],
+    ),
+  ),
+  bottomNavigationBar: BottomAppBar(
+    color: Color.fromARGB(255, 37, 4, 2),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      
+      children: [
+        IconButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/counter');
+          },
+          icon: Icon(Icons.wine_bar),
+        ),
+        DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Color.fromARGB(255, 37, 4, 2),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              "Acesse nossos recursos!",
+              style: TextStyle(fontSize: 20, color: Colors.white),
             ),
-            BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag),
-            label: "Counter",
-            ),
-            BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: "AboutUs",
-            ),
-              //pega o indice correspondnte ao indice (0,1,2,3...)
-            
-        ]),
-      );
+          ),
+        ),
+        IconButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/counter');
+          },
+          icon: Icon(Icons.person_2),
+        ),
+        IconButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/us');
+          },
+          icon: Icon(Icons.countertops),
+        ),
+      ],
+    ),
+  ),
+);
+
   }
 }
