@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, no_leading_underscores_for_local_identifiers
+// ignore_for_file: prefer_const_constructors, no_leading_underscores_for_local_identifiers, prefer_const_literals_to_create_immutables, unused_local_variable
 
 import 'package:atv_carro/altera.dart';
 import 'package:atv_carro/carro_class.dart';
@@ -15,6 +15,31 @@ class MyLista extends StatefulWidget {
 class _MyListaState extends State<MyLista> {
 List<Carro1> lista = [];
 
+  //obtem lista de CarroRep (get)
+  List <Carro1> listaCarros = CarroRep.getListaCarros;
+
+  //faz uma cópia da lista original de carros que vem de Repository
+  List<Carro1> listaBusca = [];
+
+  //quando deleta carro da lista original, precisa manter o nome digitado no campo de busca
+  String marcaBusca="";
+  @override
+  void initState() {
+    //cópia da lista original
+    listaBusca = List.from(listaCarros);
+    super.initState();
+  }
+
+  void atualizaLista (String marca)
+  {
+    listaBusca = List.from(listaCarros);
+    setState(() {
+      //seleciona somente os alunos com nome igual ao da busca e grava na cópia
+      listaBusca = listaCarros.where((element) => (
+        element.marca.toLowerCase().contains(marca.toLowerCase()))).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final _listaCarros = CarroRep.getListaCarros;
@@ -26,41 +51,70 @@ List<Carro1> lista = [];
     body: SingleChildScrollView(
       child: Center(
         child: Column(children: [
+          SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+             SizedBox(width:350, height:30, 
+              child: TextField (
+                style: TextStyle(fontSize: 15, color: Colors.white ),
+                decoration:  InputDecoration (
+                  labelText: 'Montadora',
+                  border: OutlineInputBorder(),
+                  filled: true,
+                  fillColor: Colors.yellow,  
+                  labelStyle: TextStyle(color: Colors.white),                
+                  prefixIcon: Icon(Icons.search, color: Colors.black,),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.yellow), // Cor da borda (qnd ta em foco)
+                  ),
+                ),
+                onChanged: (String marca) {
+                  //guarda string do campo de busca caso seja necessário usar na exclusão
+                  marcaBusca = marca;
+                  atualizaLista(marcaBusca);
+                },
+            )
+            ),
+        ]
+          ),
+          SizedBox(height: 30),
+        
       ListView.separated(
-        shrinkWrap: true,
+      shrinkWrap: true, //ajusta a tela para a quantidade de itens do listview | poderia ser sizedbox com tamanho fixo
       separatorBuilder: (BuildContext context, int index) =>Divider(thickness:4),
-      itemCount: _listaCarros.length,//importante
+      itemCount: listaBusca.length,//importante
       itemBuilder: (BuildContext context, int index) {  
         return ListTile(
           
-          title: Text(_listaCarros[index].marca),
+          title: Text(listaBusca[index].marca),
           subtitle: Row(
             mainAxisSize: MainAxisSize.min,
-
             children: [
-              Text(_listaCarros[index].cod.toString()),
+              Text(listaBusca[index].cod.toString()),
               SizedBox(width: 10,),
-              Text('- ${_listaCarros[index].ano.toString()}')
+              Text('- ${listaBusca[index].ano.toString()}')
             ],
           ),
-          //COLOCAR AQUI PARA APARECER O ANO
-          leading: CircleAvatar(child: Text(_listaCarros[index].marca[0])),
+          leading: CircleAvatar(
+            child: Text(listaBusca[index].marca[0]),
+            backgroundColor: Colors.pink,
+            ),
           trailing: SizedBox (
             width: 70,
             child: Row (children: [
               Expanded(child: IconButton(onPressed: () {
                 Navigator.push(context,
                 MaterialPageRoute(builder: (context) {
-                  return AlteraCarro(_listaCarros[index], index);
+                  return AlteraCarro(listaBusca[index], index);
                 },));
                 
               }, icon: Icon(Icons.edit)),),
               Expanded(child: IconButton(onPressed: () {
-                Carro1 car = _listaCarros[index];
+                Carro1 car = listaBusca[index];
                 CarroRep.remover(car);
-
                 setState(() { //para redesenhar a tela com os novos estados dos widgets
-                  
+                 atualizaLista(marcaBusca);
                 });
               }, icon: Icon(Icons.delete),))
             ]),
@@ -87,4 +141,5 @@ List<Carro1> lista = [];
     ),
     );
   }
+  
 }
