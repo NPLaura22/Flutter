@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_local_variable
 import 'package:crud_pecas_carro/peca_class.dart';
 import 'package:crud_pecas_carro/peca_rep.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 //import 'package:image_picker/image_picker.dart';
 
 
@@ -21,7 +22,7 @@ class _PecaState extends State<Peca> {
   //String imagePath; // Caminho da imagem selecionada 
 
 
-  TextEditingController campoCod = TextEditingController();
+  TextEditingController campoCod = TextEditingController();  
   TextEditingController campoPeca = TextEditingController();
   TextEditingController campoValor = TextEditingController();
   TextEditingController campoQtd = TextEditingController();
@@ -58,7 +59,9 @@ class _PecaState extends State<Peca> {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal:8, vertical: 16),
-              child: TextField(
+              child: TextField(   
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly], 
+                keyboardType: TextInputType.number,            
                 controller: campoCod,
                 style: TextStyle(
                   color: Colors.purple, //COR TEXTO DIGITADO
@@ -73,7 +76,8 @@ class _PecaState extends State<Peca> {
                   fillColor: Color.fromARGB(218, 231, 221, 221),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.purple), //COR BORDA NO FOCO
-                  )
+                  ),
+                  
                 ),
               ),
             ),
@@ -103,6 +107,8 @@ class _PecaState extends State<Peca> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal:8, vertical: 16),
               child: TextField(
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly], 
+                keyboardType: TextInputType.number,
                 controller: campoValor,
                 style: TextStyle(
                   color: Colors.purple, //COR TEXTO DIGITADO
@@ -125,6 +131,8 @@ class _PecaState extends State<Peca> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal:8, vertical: 16),
               child: TextField(
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly], 
+                keyboardType: TextInputType.number,
                 controller: campoQtd,
                 style: TextStyle(
                   color: Colors.purple, //COR TEXTO DIGITADO
@@ -148,20 +156,47 @@ class _PecaState extends State<Peca> {
 
             ElevatedButton (
               onPressed: () {
-                cod = int.parse(campoCod.text);
-                qtd = int.parse(campoQtd.text);
-                peca = campoPeca.text;
-                valor = double.parse(campoValor.text);
-                
-                Peca1 pecas = Peca1(cod, qtd, peca, valor); //'peca1' nome var usado para novo objeto
+                String codText = campoCod.text;
+                String pecaText = campoPeca.text;
+                String valorText = campoValor.text;
+                String qtdText = campoQtd.text;
+
+                if (codText.isEmpty || pecaText.isEmpty || valorText.isEmpty || qtdText.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Todos os campos são obrigatórios!'),
+                    ),
+                  );
+                } else if (codText.length <2 || codText.length >5) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Código deve ter no mínimo 2 caracteres e no máximo 5'),
+                        ),
+                    );
+                } else if (pecaText.length < 5) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Nome da Peça dee ter no mínimo 2 caracteres!'),
+                      ),
+                    );
+                }               
+                else {
+                    cod = int.parse(campoCod.text);
+                    qtd = int.parse(campoQtd.text);
+                    peca = campoPeca.text;
+                    valor = double.parse(campoValor.text);
+
+                  Peca1 pecas = Peca1(cod, qtd, peca, valor); //'peca1' nome var usado para novo objeto
                 listPecas.adicionar(pecas);
 
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                   content: Text('Peça cadastrada!'),
                   ),
-                );          
-                setState(() {});
+                );  
+                  setState(() {});
+                }  
+                          
           }, 
             style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.purple), 
